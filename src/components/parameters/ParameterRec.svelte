@@ -1,6 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
+  import type { User } from '../../types/app';
   import type { FormParameter, ParameterType } from '../../types/parameter';
   import type { ActionArray } from '../../utilities/useActions';
 
@@ -13,6 +14,7 @@
   export let levelPadding: number = 20;
   export let parameterType: ParameterType = 'activity';
   export let use: ActionArray = [];
+  export let user: User | null;
 
   let component: any;
 
@@ -22,7 +24,11 @@
     if (formParameter.schema.type === 'series') {
       component = (await import('./ParameterRecSeries.svelte')).default;
     } else if (formParameter.schema.type === 'struct') {
-      component = (await import('./ParameterRecStruct.svelte')).default;
+      if (formParameter.schema.metadata?.activity) {
+        component = (await import('./ParameterRecActivity.svelte')).default;
+      } else {
+        component = (await import('./ParameterRecStruct.svelte')).default;
+      }
     }
   }
 </script>
@@ -32,6 +38,7 @@
   {disabled}
   {expanded}
   {formParameter}
+  {user}
   {hideRightAdornments}
   {labelColumnWidth}
   {level}

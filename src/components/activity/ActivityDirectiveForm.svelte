@@ -656,6 +656,7 @@
         <Parameters
           disabled={!editable}
           {formParameters}
+          {user}
           {highlightKeysMap}
           on:change={onChangeFormParameters}
           on:reset={onResetFormParameters}

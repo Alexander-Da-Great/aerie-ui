@@ -1,5 +1,8 @@
 type ValueSchemaMetadata = {
   metadata?: {
+    activity?: {
+      value: string;
+    };
     unit?: {
       value: string;
     };

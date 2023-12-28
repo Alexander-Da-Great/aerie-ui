@@ -1,6 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
+  import type { User } from '../../types/app';
   import type { FormParameter, ParameterType } from '../../types/parameter';
   import { compare } from '../../utilities/generic';
   import type { ActionArray } from '../../utilities/useActions';
@@ -17,6 +18,7 @@
   export let levelPadding: number = 20;
   export let parameterType: ParameterType = 'activity';
   export let use: ActionArray = [];
+  export let user: User | null;
 
   let clientWidth: number;
   let level: number = 0;
@@ -34,6 +36,7 @@
             {disabled}
             {expanded}
             {formParameter}
+            {user}
             {hideRightAdornments}
             {labelColumnWidth}
             {level}

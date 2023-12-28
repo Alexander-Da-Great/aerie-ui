@@ -24,7 +24,6 @@ export function getArgument(
   defaultValue?: Argument,
 ): { value: any; valueSource: ValueSource } {
   const type = schema.type;
-
   if (value !== null && value !== undefined) {
     if (presetValue === undefined) {
       return { value, valueSource: 'user on model' };
@@ -70,7 +69,6 @@ export function getFormParameters(
     const defaultArg: Argument | undefined = defaultArgumentsMap[name];
     const { value, valueSource } = getArgument(arg, schema, preset, defaultArg);
     const required = requiredParameters.indexOf(name) > -1;
-
     const formParameter: FormParameter = {
       errors: null,
       name,
